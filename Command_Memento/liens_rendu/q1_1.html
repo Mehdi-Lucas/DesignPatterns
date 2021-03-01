@@ -1,0 +1,65 @@
+<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>package</span> question1;
+
+  <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> Contributeur <span style='font-weight:bold;color:#7B0052;'>extends</span> Cotisant<span style='font-weight:bold;color:#D3171B'>{</span>
+      <span style='font-weight:bold;color:#7B0052;'>private</span> <span style='font-weight:bold;color:#7B0052;'>int</span> solde;
+  
+      <span style='font-weight:bold;color:#7B0052;'>public</span> Contributeur(String nom, <span style='font-weight:bold;color:#7B0052;'>int</span> somme)<span style='font-weight:bold;color:#D3171B'>{</span>
+          <span style='font-weight:bold;color:#7B0052;'>super</span>(nom);
+          <span style='font-weight:bold;color:#7B0052;'>if</span> (somme &gt;= 0) <span style='font-weight:bold;color:#D3171B'>{</span>
+              this.solde = somme;
+          <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#D3171B'>{</span>
+              <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> RuntimeException(<span style='color:#2A00FF'>"la somme allouée lors de la création ne peut être négative"</span>); 
+          <span style='font-weight:bold;color:#D3171B'>}</span>
+      <span style='font-weight:bold;color:#D3171B'>}</span>
+  
+      <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>int</span> solde()<span style='font-weight:bold;color:#D3171B'>{</span>
+          <span style='font-weight:bold;color:#7B0052;'>return</span> this.solde;
+      <span style='font-weight:bold;color:#D3171B'>}</span>
+  
+      <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>int</span> nombreDeCotisants()<span style='font-weight:bold;color:#D3171B'>{</span>
+          <span style='font-weight:bold;color:#7B0052;'>return</span> 1;
+      <span style='font-weight:bold;color:#D3171B'>}</span>
+  
+      <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> debit(<span style='font-weight:bold;color:#7B0052;'>int</span> somme) <span style='font-weight:bold;color:#7B0052;'>throws</span> SoldeDebiteurException<span style='font-weight:bold;color:#D3171B'>{</span>
+          <span style='font-weight:bold;color:#7B0052;'>if</span> (somme &lt; 0) <span style='font-weight:bold;color:#D3171B'>{</span>
+              <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> RuntimeException(<span style='color:#2A00FF'>"la somme ne peut pas etre negatif"</span>);
+          <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#7B0052;'>if</span> (somme &gt; this.solde)<span style='font-weight:bold;color:#D3171B'>{</span>
+              <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> SoldeDebiteurException();
+          <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span> <span style='font-weight:bold;color:#D3171B'>{</span>
+              this.solde = solde - somme;
+          <span style='font-weight:bold;color:#D3171B'>}</span>
+      <span style='font-weight:bold;color:#D3171B'>}</span>
+  
+      <span style='color:#3F5FBF'>/**
+       * throws RuntimeException new RuntimeException("nombre négatif !!!");
+       */</span>
+      <span style='font-weight:bold;color:#7B0052;'>public</span>  <span style='font-weight:bold;color:#7B0052;'>void</span> credit(<span style='font-weight:bold;color:#7B0052;'>int</span> somme)<span style='font-weight:bold;color:#D3171B'>{</span>
+          <span style='font-weight:bold;color:#7B0052;'>if</span>(somme &lt; 0)<span style='font-weight:bold;color:#D3171B'>{</span> 
+              <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> RuntimeException(<span style='color:#2A00FF'>"la somme ne peut pas etre negatif"</span>); 
+          <span style='font-weight:bold;color:#D3171B'>}</span> <span style='font-weight:bold;color:#7B0052;'>else</span><span style='font-weight:bold;color:#D3171B'>{</span>                             
+              this.solde = solde + somme; 
+          <span style='font-weight:bold;color:#D3171B'>}</span>
+      <span style='font-weight:bold;color:#D3171B'>}</span>
+  
+      <span style='color:#3F5FBF'>/**
+       * throws RuntimeException new RuntimeException("nombre négatif !!!");
+       */</span>
+      <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>void</span> affecterSolde(<span style='font-weight:bold;color:#7B0052;'>int</span> somme)<span style='font-weight:bold;color:#D3171B'>{</span>
+          <span style='font-weight:bold;color:#7B0052;'>if</span>(somme &lt;0) <span style='font-weight:bold;color:#7B0052;'>throw</span> <span style='font-weight:bold;color:#7B0052;'>new</span> RuntimeException(<span style='color:#2A00FF'>"nombre négatif !!!"</span>);
+          <span style='font-weight:bold;color:#7B0052;'>try</span><span style='font-weight:bold;color:#D3171B'>{</span>
+              debit(solde()); credit(somme);<span style='color:#3F7F5F'>// mode élégant ... 
+  </span>        <span style='font-weight:bold;color:#D3171B'>}</span><span style='font-weight:bold;color:#7B0052;'>catch</span>(SoldeDebiteurException sde)<span style='font-weight:bold;color:#D3171B'>{</span> 
+              <span style='color:#3F7F5F'>// exception peu probable
+  </span>            this.solde = somme; <span style='color:#3F7F5F'>// mode efficace ...
+  </span>        <span style='font-weight:bold;color:#D3171B'>}</span>
+      <span style='font-weight:bold;color:#D3171B'>}</span>
+  
+      <span style='font-weight:bold;color:#7B0052;'>public</span> &lt;T&gt; T accepter(Visiteur&lt;T&gt; visiteur)<span style='font-weight:bold;color:#D3171B'>{</span>
+          <span style='font-weight:bold;color:#7B0052;'>return</span> visiteur.visite(<span style='font-weight:bold;color:#7B0052;'>this</span>);
+      <span style='font-weight:bold;color:#D3171B'>}</span>
+  
+      <span style='font-weight:bold;color:#7B0052;'>public</span> String toString()<span style='font-weight:bold;color:#D3171B'>{</span>
+          <span style='font-weight:bold;color:#7B0052;'>return</span> <span style='color:#2A00FF'>"&lt;Contributeur : "</span> + nom + <span style='color:#2A00FF'>","</span> + solde + <span style='color:#2A00FF'>"&gt;"</span>;
+      <span style='font-weight:bold;color:#D3171B'>}</span>
+  
+  <span style='font-weight:bold;color:#D3171B'>}</span></pre>

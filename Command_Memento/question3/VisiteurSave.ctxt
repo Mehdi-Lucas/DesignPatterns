@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=VisiteurSave
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ VisiteurSave\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=c
+comment1.target=java.util.Map\ visite(question1.Contributeur)
+comment2.params=g
+comment2.target=java.util.Map\ visite(question1.GroupeDeContributeurs)
+numComments=3

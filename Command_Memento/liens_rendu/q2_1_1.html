@@ -1,0 +1,35 @@
+<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>package</span> question2;
+  <span style='font-weight:bold;color:#7B0052;'>import</span> question1.Cotisant;
+  <span style='font-weight:bold;color:#7B0052;'>import</span> question1.Contributeur;
+  <span style='font-weight:bold;color:#7B0052;'>import</span> question1.GroupeDeContributeurs;
+  <span style='font-weight:bold;color:#7B0052;'>import</span> question1.Visiteur;
+  
+  <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> CompositeValide <span style='font-weight:bold;color:#7B0052;'>implements</span> Visiteur&lt;Boolean&gt;<span style='font-weight:bold;color:#D3171B'>{</span>
+    <span style='color:#3F7F5F'>// Le solde de chaque contributeur doit être supérieur ou égal à un nombre transmis en paramètre 
+  </span>  <span style='color:#3F7F5F'>// et il n’existe pas de groupe n’ayant pas de contributeurs.
+  </span>  <span style='font-weight:bold;color:#7B0052;'>private</span> <span style='font-weight:bold;color:#7B0052;'>int</span> valeur;
+    <span style='font-weight:bold;color:#7B0052;'>public</span> CompositeValide(<span style='font-weight:bold;color:#7B0052;'>int</span> valeur)<span style='font-weight:bold;color:#D3171B'>{</span>
+        this.valeur = valeur;
+      <span style='font-weight:bold;color:#D3171B'>}</span>
+    <span style='font-weight:bold;color:#7B0052;'>public</span> CompositeValide()<span style='font-weight:bold;color:#D3171B'>{</span>
+        <span style='font-weight:bold;color:#7B0052;'>this</span>(0);
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+    
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Contributeur c)<span style='font-weight:bold;color:#D3171B'>{</span>
+      <span style='font-weight:bold;color:#7B0052;'>return</span> c.solde() &gt;= valeur; 
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+    
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(GroupeDeContributeurs g)<span style='font-weight:bold;color:#D3171B'>{</span>
+      <span style='font-weight:bold;color:#7B0052;'>boolean</span> res = <span style='font-weight:bold;color:#7B0052;'>true</span>;
+      <span style='font-weight:bold;color:#7B0052;'>if</span> (g.nombreDeCotisants() &lt;= 0) <span style='font-weight:bold;color:#D3171B'>{</span>
+       <span style='font-weight:bold;color:#7B0052;'>return</span> <span style='font-weight:bold;color:#7B0052;'>false</span>;   
+      <span style='font-weight:bold;color:#D3171B'>}</span>
+      <span style='font-weight:bold;color:#7B0052;'>for</span> (Cotisant cot : g.getChildren())<span style='font-weight:bold;color:#D3171B'>{</span>
+          <span style='font-weight:bold;color:#7B0052;'>if</span> (!cot.accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>))<span style='font-weight:bold;color:#D3171B'>{</span>
+           res = <span style='font-weight:bold;color:#7B0052;'>false</span>; 
+           <span style='font-weight:bold;color:#7B0052;'>return</span> res;
+          <span style='font-weight:bold;color:#D3171B'>}</span>
+      <span style='font-weight:bold;color:#D3171B'>}</span>
+      <span style='font-weight:bold;color:#7B0052;'>return</span> res ;
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+  <span style='font-weight:bold;color:#D3171B'>}</span></pre>

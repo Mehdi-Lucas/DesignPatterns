@@ -1,0 +1,27 @@
+<pre style='text-align: left; border: 1px dashed #008DEF; line-height: 18px; padding: 15px; font-size: 13px; font-family:'Courier New', Courier, monospace; overflow: auto;'><span style='font-weight:bold;color:#7B0052;'>package</span> question2;
+
+  <span style='font-weight:bold;color:#7B0052;'>import</span> question1.*;
+  <span style='font-weight:bold;color:#7B0052;'>import</span> java.util.Set;
+  <span style='font-weight:bold;color:#7B0052;'>import</span> java.util.TreeSet;
+  
+  <span style='font-weight:bold;color:#7B0052;'>public</span> <span style='font-weight:bold;color:#7B0052;'>class</span> SansDoublon <span style='font-weight:bold;color:#7B0052;'>implements</span> Visiteur&lt;Boolean&gt;<span style='font-weight:bold;color:#D3171B'>{</span>
+      Set setNom = <span style='font-weight:bold;color:#7B0052;'>new</span> TreeSet&lt;String&gt;();
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(Contributeur c)<span style='font-weight:bold;color:#D3171B'>{</span>
+      <span style='font-weight:bold;color:#7B0052;'>return</span> setNom.add(c.nom()); <span style='color:#3F7F5F'>// a compléter;
+  </span>  <span style='font-weight:bold;color:#D3171B'>}</span>
+    
+    <span style='font-weight:bold;color:#7B0052;'>public</span> Boolean visite(GroupeDeContributeurs g)<span style='font-weight:bold;color:#D3171B'>{</span>
+      <span style='font-weight:bold;color:#7B0052;'>boolean</span> res = <span style='font-weight:bold;color:#7B0052;'>true</span>;
+              <span style='font-weight:bold;color:#7B0052;'>if</span> (!setNom.add(g.nom()))<span style='font-weight:bold;color:#D3171B'>{</span>
+               res = <span style='font-weight:bold;color:#7B0052;'>false</span>;
+               <span style='font-weight:bold;color:#7B0052;'>return</span> res;
+              <span style='font-weight:bold;color:#D3171B'>}</span> 
+          <span style='font-weight:bold;color:#7B0052;'>for</span>(Cotisant cot : g.getChildren())<span style='font-weight:bold;color:#D3171B'>{</span> 
+              <span style='font-weight:bold;color:#7B0052;'>if</span> (!cot.accepter(<span style='font-weight:bold;color:#7B0052;'>this</span>))<span style='font-weight:bold;color:#D3171B'>{</span>
+               res = setNom.add(cot.nom());   
+              <span style='font-weight:bold;color:#D3171B'>}</span>
+          <span style='font-weight:bold;color:#D3171B'>}</span> 
+      <span style='font-weight:bold;color:#7B0052;'>return</span> res ;
+    <span style='font-weight:bold;color:#D3171B'>}</span>
+    
+  <span style='font-weight:bold;color:#D3171B'>}</span></pre>
